@@ -1,16 +1,11 @@
 package com.jwiltenburg.transito.domain.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
@@ -23,19 +18,12 @@ public class Proprietario {
     @Column(name = "id_proprietario", nullable = false)
     private Long id;
 
-    @NotBlank
-    @Size(max = 100)
     @Column(name = "nome_proprietario", nullable = false)
     private String nome;
 
-    @NotBlank
-    @Size(max = 255)
-    @Email
     @Column(name = "email_proprietario", nullable = false)
     private String email;
 
-    @NotBlank
-    @Size(max = 20)
     @Column(name = "telefone_proprietario", nullable = false)
     private String telefone;
 }

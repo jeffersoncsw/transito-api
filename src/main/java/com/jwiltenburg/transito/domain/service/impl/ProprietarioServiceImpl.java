@@ -6,6 +6,8 @@ import com.jwiltenburg.transito.api.converter.ProprietarioConverter;
 import com.jwiltenburg.transito.domain.repository.ProprietarioRepository;
 import com.jwiltenburg.transito.domain.service.ProprietarioService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @AllArgsConstructor
@@ -19,5 +21,16 @@ public class ProprietarioServiceImpl implements ProprietarioService {
         var proprietarioSalvo = proprietarioRepository.save(converter.toProprietarioModel(request));
 
         return converter.toProprietarioResponse(proprietarioSalvo);
+    }
+
+    @Override
+    public Page<ProprietarioResponse> listar(Pageable page) {
+        var pages = proprietarioRepository.findAll(page);
+
+        if(pages.isEmpty()){
+            throw new RuntimeException("Recurso não encontrado");
+        }
+
+        return pages.map(proprietario -> converter.toProprietarioResponse(proprietario));
     }
 }
