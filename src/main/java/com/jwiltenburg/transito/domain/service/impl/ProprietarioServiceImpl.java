@@ -3,6 +3,7 @@ package com.jwiltenburg.transito.domain.service.impl;
 import com.jwiltenburg.transito.api.controller.data.request.ProprietarioRequest;
 import com.jwiltenburg.transito.api.controller.data.response.ProprietarioResponse;
 import com.jwiltenburg.transito.api.converter.ProprietarioConverter;
+import com.jwiltenburg.transito.domain.exception.ResourceNotFoundException;
 import com.jwiltenburg.transito.domain.repository.ProprietarioRepository;
 import com.jwiltenburg.transito.domain.service.ProprietarioService;
 import lombok.AllArgsConstructor;
@@ -28,7 +29,7 @@ public class ProprietarioServiceImpl implements ProprietarioService {
         var pages = proprietarioRepository.findAll(page);
 
         if(pages.isEmpty()){
-            throw new RuntimeException("Recurso não encontrado");
+            throw new ResourceNotFoundException("Recurso não encontrado");
         }
 
         return pages.map(proprietario -> converter.toProprietarioResponse(proprietario));
