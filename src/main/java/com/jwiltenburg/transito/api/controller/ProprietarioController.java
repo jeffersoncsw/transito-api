@@ -2,7 +2,7 @@ package com.jwiltenburg.transito.api.controller;
 
 import com.jwiltenburg.transito.api.controller.data.request.ProprietarioRequest;
 import com.jwiltenburg.transito.api.controller.data.response.ProprietarioResponse;
-import com.jwiltenburg.transito.domain.service.impl.ProprietarioServiceImpl;
+import com.jwiltenburg.transito.domain.service.ProprietarioService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/proprietarios")
 public class ProprietarioController {
 
-    private final ProprietarioServiceImpl proprietarioService;
+    private final ProprietarioService proprietarioService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -29,6 +29,11 @@ public class ProprietarioController {
         var response = proprietarioService.listar(page);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/{proprietarioId}")
+    public ProprietarioResponse buscar(@PathVariable Long proprietarioId){
+        return proprietarioService.buscar(proprietarioId);
     }
 
 }

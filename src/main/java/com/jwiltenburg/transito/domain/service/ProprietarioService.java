@@ -9,5 +9,6 @@ public interface ProprietarioService {
 
     ProprietarioResponse salvar(ProprietarioRequest request);
     Page<ProprietarioResponse> listar(Pageable page);
+    ProprietarioResponse buscar(Long proprietarioId);
 
 }

@@ -4,6 +4,7 @@ import com.jwiltenburg.transito.api.controller.data.request.ProprietarioRequest;
 import com.jwiltenburg.transito.api.controller.data.response.ProprietarioResponse;
 import com.jwiltenburg.transito.api.converter.ProprietarioConverter;
 import com.jwiltenburg.transito.domain.exception.ResourceNotFoundException;
+import com.jwiltenburg.transito.domain.model.Proprietario;
 import com.jwiltenburg.transito.domain.repository.ProprietarioRepository;
 import com.jwiltenburg.transito.domain.service.ProprietarioService;
 import lombok.AllArgsConstructor;
@@ -33,5 +34,16 @@ public class ProprietarioServiceImpl implements ProprietarioService {
         }
 
         return pages.map(proprietario -> converter.toProprietarioResponse(proprietario));
+    }
+
+    @Override
+    public ProprietarioResponse buscar(Long proprietarioId) {
+        Proprietario proprietario = getProprietarioId(proprietarioId);
+        return converter.toProprietarioResponse(proprietario);
+    }
+
+    private Proprietario getProprietarioId(Long proprietarioId) {
+        return proprietarioRepository.findById(proprietarioId)
+                .orElseThrow(() -> new ResourceNotFoundException("Recurso não encontrado."));
     }
 }
