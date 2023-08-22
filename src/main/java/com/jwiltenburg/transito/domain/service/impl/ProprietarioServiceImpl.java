@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @AllArgsConstructor
 @Service
@@ -20,6 +21,7 @@ public class ProprietarioServiceImpl implements ProprietarioService {
     private final ProprietarioRepository proprietarioRepository;
     private final ProprietarioConverter converter;
     @Override
+    @Transactional
     public ProprietarioResponse salvar(ProprietarioRequest request) {
         var proprietarioSalvo = proprietarioRepository.save(converter.toProprietarioModel(request));
 
@@ -27,6 +29,7 @@ public class ProprietarioServiceImpl implements ProprietarioService {
     }
 
     @Override
+    @Transactional
     public Page<ProprietarioResponse> listar(Pageable page) {
         var pages = proprietarioRepository.findAll(page);
 
@@ -38,12 +41,14 @@ public class ProprietarioServiceImpl implements ProprietarioService {
     }
 
     @Override
+    @Transactional
     public ProprietarioResponse buscar(Long proprietarioId) {
         Proprietario proprietario = getProprietarioId(proprietarioId);
         return converter.toProprietarioResponse(proprietario);
     }
 
     @Override
+    @Transactional
     public ProprietarioResponse atualizar(Long proprietarioId, ProprietarioUpdateRequest request) {
         this.existsProprietario(proprietarioId);
         var proprietario = converter.toProprietarioUpdateModel(proprietarioId, request);
@@ -52,6 +57,7 @@ public class ProprietarioServiceImpl implements ProprietarioService {
     }
 
     @Override
+    @Transactional
     public void remover(Long proprietarioId) {
         this.existsProprietario(proprietarioId);
         proprietarioRepository.deleteById(proprietarioId);
