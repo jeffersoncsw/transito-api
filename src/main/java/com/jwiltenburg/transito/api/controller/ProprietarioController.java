@@ -36,4 +36,9 @@ public class ProprietarioController {
         return proprietarioService.buscar(proprietarioId);
     }
 
+    @PutMapping("/{proprietarioId}")
+    public ProprietarioResponse atualizar(@PathVariable Long proprietarioId, @RequestBody ProprietarioRequest request){
+        return proprietarioService.atualizar(proprietarioId, request);
+    }
+
 }

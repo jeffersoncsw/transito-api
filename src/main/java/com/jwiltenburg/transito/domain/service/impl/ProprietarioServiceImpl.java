@@ -42,8 +42,23 @@ public class ProprietarioServiceImpl implements ProprietarioService {
         return converter.toProprietarioResponse(proprietario);
     }
 
+    @Override
+    public ProprietarioResponse atualizar(Long proprietarioId, ProprietarioRequest request) {
+        this.existsProprietario(proprietarioId);
+        var proprietario = converter.toProprietarioModel(request);
+        proprietario.setId(proprietarioId);
+        var proprietarioSalvo = proprietarioRepository.saveAndFlush(proprietario);
+        return converter.toProprietarioResponse(proprietarioSalvo);
+    }
+
     private Proprietario getProprietarioId(Long proprietarioId) {
         return proprietarioRepository.findById(proprietarioId)
                 .orElseThrow(() -> new ResourceNotFoundException("Recurso não encontrado."));
+    }
+
+    private void existsProprietario(Long proprietarioId){
+        if(!proprietarioRepository.existsById(proprietarioId)){
+            throw new ResourceNotFoundException("Recurso não encontrado");
+        }
     }
 }
