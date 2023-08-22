@@ -1,6 +1,7 @@
 package com.jwiltenburg.transito.api.controller;
 
 import com.jwiltenburg.transito.api.controller.data.request.ProprietarioRequest;
+import com.jwiltenburg.transito.api.controller.data.request.ProprietarioUpdateRequest;
 import com.jwiltenburg.transito.api.controller.data.response.ProprietarioResponse;
 import com.jwiltenburg.transito.domain.service.ProprietarioService;
 import jakarta.validation.Valid;
@@ -37,7 +38,7 @@ public class ProprietarioController {
     }
 
     @PutMapping("/{proprietarioId}")
-    public ProprietarioResponse atualizar(@PathVariable Long proprietarioId, @RequestBody @Valid ProprietarioRequest request){
+    public ProprietarioResponse atualizar(@PathVariable Long proprietarioId, @RequestBody @Valid ProprietarioUpdateRequest request){
         return proprietarioService.atualizar(proprietarioId, request);
     }
 

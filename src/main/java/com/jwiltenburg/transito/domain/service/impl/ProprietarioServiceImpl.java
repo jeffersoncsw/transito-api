@@ -1,6 +1,7 @@
 package com.jwiltenburg.transito.domain.service.impl;
 
 import com.jwiltenburg.transito.api.controller.data.request.ProprietarioRequest;
+import com.jwiltenburg.transito.api.controller.data.request.ProprietarioUpdateRequest;
 import com.jwiltenburg.transito.api.controller.data.response.ProprietarioResponse;
 import com.jwiltenburg.transito.api.converter.ProprietarioConverter;
 import com.jwiltenburg.transito.domain.exception.ResourceNotFoundException;
@@ -43,10 +44,9 @@ public class ProprietarioServiceImpl implements ProprietarioService {
     }
 
     @Override
-    public ProprietarioResponse atualizar(Long proprietarioId, ProprietarioRequest request) {
+    public ProprietarioResponse atualizar(Long proprietarioId, ProprietarioUpdateRequest request) {
         this.existsProprietario(proprietarioId);
-        var proprietario = converter.toProprietarioModel(request);
-        proprietario.setId(proprietarioId);
+        var proprietario = converter.toProprietarioUpdateModel(proprietarioId, request);
         var proprietarioSalvo = proprietarioRepository.saveAndFlush(proprietario);
         return converter.toProprietarioResponse(proprietarioSalvo);
     }
