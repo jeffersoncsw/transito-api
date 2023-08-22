@@ -51,6 +51,12 @@ public class ProprietarioServiceImpl implements ProprietarioService {
         return converter.toProprietarioResponse(proprietarioSalvo);
     }
 
+    @Override
+    public void remover(Long proprietarioId) {
+        this.existsProprietario(proprietarioId);
+        proprietarioRepository.deleteById(proprietarioId);
+    }
+
     private Proprietario getProprietarioId(Long proprietarioId) {
         return proprietarioRepository.findById(proprietarioId)
                 .orElseThrow(() -> new ResourceNotFoundException("Recurso não encontrado."));

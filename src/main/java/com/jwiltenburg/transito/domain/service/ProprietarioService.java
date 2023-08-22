@@ -11,4 +11,5 @@ public interface ProprietarioService {
     Page<ProprietarioResponse> listar(Pageable page);
     ProprietarioResponse buscar(Long proprietarioId);
     ProprietarioResponse atualizar(Long proprietarioId, ProprietarioRequest request);
+    void remover(Long proprietarioId);
 }

@@ -37,8 +37,14 @@ public class ProprietarioController {
     }
 
     @PutMapping("/{proprietarioId}")
-    public ProprietarioResponse atualizar(@PathVariable Long proprietarioId, @RequestBody ProprietarioRequest request){
+    public ProprietarioResponse atualizar(@PathVariable Long proprietarioId, @RequestBody @Valid ProprietarioRequest request){
         return proprietarioService.atualizar(proprietarioId, request);
+    }
+
+    @DeleteMapping("/{proprietarioId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void remover(@PathVariable Long proprietarioId){
+        proprietarioService.remover(proprietarioId);
     }
 
 }
