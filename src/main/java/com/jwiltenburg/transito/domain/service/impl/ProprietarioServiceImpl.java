@@ -4,6 +4,7 @@ import com.jwiltenburg.transito.api.controller.data.request.ProprietarioRequest;
 import com.jwiltenburg.transito.api.controller.data.request.ProprietarioUpdateRequest;
 import com.jwiltenburg.transito.api.controller.data.response.ProprietarioResponse;
 import com.jwiltenburg.transito.api.converter.ProprietarioConverter;
+import com.jwiltenburg.transito.domain.exception.BusinessRuleException;
 import com.jwiltenburg.transito.domain.exception.ResourceNotFoundException;
 import com.jwiltenburg.transito.domain.model.Proprietario;
 import com.jwiltenburg.transito.domain.repository.ProprietarioRepository;
@@ -20,9 +21,12 @@ public class ProprietarioServiceImpl implements ProprietarioService {
 
     private final ProprietarioRepository proprietarioRepository;
     private final ProprietarioConverter converter;
+
     @Override
     @Transactional
     public ProprietarioResponse salvar(ProprietarioRequest request) {
+        existsEmail(request.getEmail());
+
         var proprietarioSalvo = proprietarioRepository.save(converter.toProprietarioModel(request));
 
         return converter.toProprietarioResponse(proprietarioSalvo);
@@ -52,6 +56,7 @@ public class ProprietarioServiceImpl implements ProprietarioService {
     public ProprietarioResponse atualizar(Long proprietarioId, ProprietarioUpdateRequest request) {
         this.existsProprietario(proprietarioId);
         var proprietario = converter.toProprietarioUpdateModel(proprietarioId, request);
+        existsEmail(request.getEmail());
         var proprietarioSalvo = proprietarioRepository.saveAndFlush(proprietario);
         return converter.toProprietarioResponse(proprietarioSalvo);
     }
@@ -71,6 +76,13 @@ public class ProprietarioServiceImpl implements ProprietarioService {
     private void existsProprietario(Long proprietarioId){
         if(!proprietarioRepository.existsById(proprietarioId)){
             throw new ResourceNotFoundException("Recurso não encontrado");
+        }
+    }
+
+    private void existsEmail(String email) {
+        boolean existEmail = proprietarioRepository.existsByEmail(email);
+        if(existEmail){
+            throw new BusinessRuleException("Já existe um proprietário cadastrado com este e-mail.");
         }
     }
 }
