@@ -20,6 +20,7 @@ Tudo isso em um modelo de simulação.
 * **Spring 3.1.2:** Spring boot, Spring JPA.
 * REST
 * MySQL
+* Flyway
 
 ## Rodando o projeto
 

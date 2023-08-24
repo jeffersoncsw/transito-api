@@ -4,7 +4,7 @@ create table tb_veiculo(
     marca_veiculo varchar(20) not null,
     modelo_veiculo varchar(20) not null,
     placa_veiculo varchar(7) not null,
-    status varchar(20) not null,
+    status_veiculo varchar(20) not null,
     data_cadastro_veiculo datetime not null,
     data_apreensao_veiculo datetime,
 
