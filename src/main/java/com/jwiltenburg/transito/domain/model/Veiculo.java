@@ -1,9 +1,12 @@
 package com.jwiltenburg.transito.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+
+import static com.fasterxml.jackson.annotation.JsonProperty.Access.*;
 
 @Data
 @NoArgsConstructor
@@ -35,11 +38,14 @@ public class Veiculo {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status_veiculo", nullable = false)
+    @JsonProperty(access = READ_ONLY)
     private StatusVeiculo status;
 
     @Column(name = "data_cadastro_veiculo", nullable = false)
+    @JsonProperty(access = READ_ONLY)
     private LocalDateTime dataCadastro;
 
     @Column(name = "data_apreensao_veiculo")
+    @JsonProperty(access = READ_ONLY)
     private LocalDateTime dataApreensao;
 }
