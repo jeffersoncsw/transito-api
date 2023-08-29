@@ -31,4 +31,9 @@ public class VeiculoController {
 
         return new ResponseEntity<>(responsePage, HttpStatus.OK);
     }
+
+    @GetMapping("/{veiculoId}")
+    public VeiculoResponse buscar(@PathVariable Long veiculoId){
+        return veiculoService.buscar(veiculoId);
+    }
 }
