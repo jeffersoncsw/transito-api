@@ -8,5 +8,6 @@ import org.springframework.data.domain.Pageable;
 public interface VeiculoService {
     VeiculoResponse salvar(VeiculoRequest request);
     Page<VeiculoResponse> listar(Pageable page);
+    VeiculoResponse buscar(Long veiculoId);
 
 }
