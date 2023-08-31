@@ -1,6 +1,8 @@
 package com.jwiltenburg.transito.domain.model;
 
+import com.jwiltenburg.transito.domain.validation.ValidationGroups;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Data
@@ -12,6 +14,7 @@ import lombok.*;
 @Table(name = "tb_proprietario")
 public class Proprietario {
 
+    @NotNull(groups = ValidationGroups.ProprietarioId.class)
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

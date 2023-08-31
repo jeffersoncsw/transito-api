@@ -2,9 +2,13 @@ package com.jwiltenburg.transito.api.controller.data.request;
 
 import com.jwiltenburg.transito.domain.model.Proprietario;
 import com.jwiltenburg.transito.domain.model.StatusVeiculo;
+import com.jwiltenburg.transito.domain.validation.ValidationGroups;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import jakarta.validation.groups.ConvertGroup;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,6 +21,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class VeiculoRequest implements Serializable {
 
+    @Valid
+    @ConvertGroup(to = ValidationGroups.ProprietarioId.class)
+    @NotNull
     private Proprietario proprietarioId;
 
     @NotBlank
