@@ -15,12 +15,19 @@ Tudo isso em um modelo de simulação.
 ## Diagrama Conceitual
 ![img.png](images/img.png)
 
-## Tecnologias utilizadas
-* Java 17
-* **Spring 3.1.2:** Spring boot, Spring JPA.
-* REST
-* MySQL
-* Flyway
+## 🛠 Tecnologias utilizadas
+
+<img width="60em" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original-wordmark.svg" />
+
+<img width="60em" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original-wordmark.svg" />
+
+<img width="90em" src="https://keenethics.com/wp-content/uploads/2022/01/rest-api-1.svg" />
+
+<img width="60em" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original-wordmark.svg" />
+
+<img width="60em" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Flyway_logo.svg/2154px-Flyway_logo.svg.png" />
+
+
 
 ## Rodando o projeto
 
