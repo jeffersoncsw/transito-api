@@ -17,6 +17,8 @@ Tudo isso em um modelo de simulação.
 
 ## 🛠 Tecnologias utilizadas
 
+<div>
+
 <img width="60em" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original-wordmark.svg" />
 
 <img width="60em" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original-wordmark.svg" />
@@ -27,7 +29,7 @@ Tudo isso em um modelo de simulação.
 
 <img width="60em" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Flyway_logo.svg/2154px-Flyway_logo.svg.png" />
 
-
+</div>
 
 ## Rodando o projeto
 
