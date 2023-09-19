@@ -36,7 +36,7 @@ public class VeiculoRequest implements Serializable {
 
     @NotBlank
     @Size(max = 7)
-    @Pattern(regexp = "[A-Z]{3}[0-9][0-9A-Z][0-9]{2}", message = "A placa precisa estar no formato antigo (XXX0000) ou no atual (XXX0X00).")
+    @Pattern(regexp = "[A-Z]{3}[0-9][0-9A-Z][0-9]{2}")
     private String placa;
 
     private StatusVeiculo status;
